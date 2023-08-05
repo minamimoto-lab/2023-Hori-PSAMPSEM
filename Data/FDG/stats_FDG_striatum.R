@@ -96,7 +96,7 @@ dat %>%
 
 
 #-----------------------------
-# paired-T 817vs792 only
+# comparison 817vs792 only
 #-----------------------------
 dat_817vs792 <-
   path %>%
@@ -105,4 +105,8 @@ dat_817vs792 <-
   dplyr::filter(str_detect(cond, "-100"))
   dplyr::filter(str_detect(cond,"vare",negate=TRUE))
 
+#paired T-test
 t.test(suvrd~cond,data=dat_817vs792,paired=TRUE)
+
+#Wilcoxon signed rank exact test
+wilcox.test(suvrd~cond,data=dat_817vs792,paired=T,alternative="two.sided")
